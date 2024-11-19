@@ -68,4 +68,12 @@ public class MarsRoverTest {
         String currentStatus = rover.executeCommand("R");
         assertEquals("0:0:S", currentStatus);
     }
+
+    @Test
+    public void testMoveNorth() {
+        MarsRover rover = new MarsRover(0, 0, MarsRover.Direction.N.name());
+        rover.move();
+        assertEquals(0, rover.getX());
+        assertEquals(1, rover.getY());
+    }
 }

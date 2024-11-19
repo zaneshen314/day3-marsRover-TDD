@@ -27,11 +27,10 @@ public class MarsRover {
     }
 
     public String executeCommand(String command) {
-        if (command.equals("L")) {
-            left();
-
-        } else if (command.equals("R")) {
-            right();
+        switch (command){
+            case "M": move(); break;
+            case "L": left(); break;
+            case "r": right(); break;
         }
         return showStatus();
     }
@@ -53,6 +52,15 @@ public class MarsRover {
             case "E": this.direction = Direction.S.name(); break;
             case "S": this.direction = Direction.W.name(); break;
             case "W": this.direction = Direction.N.name(); break;
+        }
+    }
+    // 前进
+    public void move() {
+        switch (direction) {
+            case "N": y++; break;
+            case "E": x++; break;
+            case "S": y--; break;
+            case "W": x--; break;
         }
     }
 
