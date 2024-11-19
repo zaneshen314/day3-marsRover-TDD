@@ -21,15 +21,14 @@ public class MarsRover {
     }
 
     public String showStatus() {
-        return x + ":" + y + ":" + direction;
+        return String.format("%d:%d:%s", x, y, direction);
     }
 
     public String executeCommand(String command) {
-        for (int i = 0; i < command.length(); i++) {
-            String c = command.substring(i, i + 1);
-            BaseOperation operation = BaseOperation.getCommand(this.getDirection());
-            assert operation != null;
-            operation.execute(this, c);
+        BaseOperation operation = BaseOperation.getCommand(this.direction);
+        if (operation != null) {
+            command.chars()
+                    .forEach(c -> operation.execute(this, String.valueOf((char) c)));
         }
         return showStatus();
     }
