@@ -92,4 +92,13 @@ public class MarsRoverTest {
         assertEquals(0, rover.getX());
         assertEquals(-1, rover.getY());
     }
+
+    @Test
+    public void testMoveWest() {
+        MarsRover rover = new MarsRover(0, 0, MarsRover.Direction.W.name());
+        rover.move();
+        assertEquals(-1, rover.getX());
+        assertEquals(0, rover.getY());
+    }
+
 }
