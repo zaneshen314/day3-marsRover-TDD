@@ -4,7 +4,7 @@ import org.example.MarsRover;
 
 public abstract class BaseOperation {
 
-    public static BaseOperation getCommand(String direction) {
+    public static BaseOperation getOperation(String direction) {
         return switch (direction) {
             case "N" -> new NorthOperation();
             case "S" -> new SouthOperation();

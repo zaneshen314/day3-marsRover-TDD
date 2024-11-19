@@ -74,7 +74,7 @@ public class MarsRover {
 
     public void setDirection(String direction) {
         this.direction = direction;
-        this.operation = BaseOperation.getCommand(this.direction);
+        this.operation = BaseOperation.getOperation(this.direction);
     }
 
     public BaseOperation getOperation() {
