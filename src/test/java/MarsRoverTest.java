@@ -141,6 +141,12 @@ public class MarsRoverTest {
         assertEquals("-1:2:W", rover.showStatus());
     }
 
+    @Test
+    public void testMove2M() {
+        MarsRover rover = new MarsRover(0, 0, Direction.N.name());
+        rover.executeCommand("2M");
+        assertEquals("0:2:N", rover.showStatus());
+    }
 
 
 }
