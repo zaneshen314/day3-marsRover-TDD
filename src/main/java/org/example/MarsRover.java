@@ -27,32 +27,32 @@ public class MarsRover {
     }
 
     public String executeCommand(String command) {
-        int[] repeatCount = {1};
         StringBuilder numberBuffer = new StringBuilder();
         command.chars()
                 .forEach(c -> {
-                    char currentChar = (char) c;
-                    if (Character.isDigit(currentChar)) {
-                        numberBuffer.append(currentChar);
-                    } else {
-                        if (!numberBuffer.isEmpty()) {
-                            repeatCount[0] = Integer.parseInt(numberBuffer.toString());
-                            numberBuffer.setLength(0);
-                        }
-                        IntStream.range(0, repeatCount[0])
-                                .forEach(i -> {
-                                    BaseOperation operation = BaseOperation.getCommand(this.direction);
-                                    if (operation != null) {
-                                        operation.execute(this, String.valueOf(currentChar));
-                                    }
-                                });
-                        repeatCount[0] = 1;
-                    }
+                    handlerCommandChar(1,numberBuffer,(char) c);
                 });
 
         return showStatus();
     }
 
+    public void handlerCommandChar(int repeatCount,StringBuilder numberBuffer,char currentChar){
+        if (Character.isDigit(currentChar)) {
+            numberBuffer.append(currentChar);
+        } else {
+            if (!numberBuffer.isEmpty()) {
+                repeatCount = Integer.parseInt(numberBuffer.toString());
+                numberBuffer.setLength(0);
+            }
+            IntStream.range(0, repeatCount)
+                    .forEach(i -> {
+                        BaseOperation operation = BaseOperation.getCommand(this.direction);
+                        if (operation != null) {
+                            operation.execute(this, String.valueOf(currentChar));
+                        }
+                    });
+        }
+    }
 
     public int getX() {
         return x;
