@@ -9,17 +9,20 @@ public class MarsRover {
     private int x;
     private int y;
     private String direction;
+    private BaseOperation operation;
 
     public MarsRover(){
         this.x = 0;
         this.y = 0;
         this.direction = "N";
+        this.operation = BaseOperation.getCommand(this.direction);
     }
 
     public MarsRover(int x, int y, String direction){
         this.x = x;
         this.y = y;
         this.direction = direction;
+        this.operation = BaseOperation.getCommand(this.direction);
     }
 
     public String showStatus() {
@@ -46,10 +49,7 @@ public class MarsRover {
             }
             IntStream.range(0, repeatCount)
                     .forEach(i -> {
-                        BaseOperation operation = BaseOperation.getCommand(this.direction);
-                        if (operation != null) {
-                            operation.execute(this, String.valueOf(currentChar));
-                        }
+                        operation.execute(this, String.valueOf(currentChar));
                     });
         }
     }
@@ -76,5 +76,14 @@ public class MarsRover {
 
     public void setDirection(String direction) {
         this.direction = direction;
+        this.operation = BaseOperation.getCommand(this.direction);
+    }
+
+    public BaseOperation getOperation() {
+        return operation;
+    }
+
+    public void setOperation(BaseOperation operation) {
+        this.operation = operation;
     }
 }
