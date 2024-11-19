@@ -1,4 +1,5 @@
 import org.example.MarsRover;
+import org.example.constant.Direction;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -71,34 +72,75 @@ public class MarsRoverTest {
 
     @Test
     public void testMoveNorth() {
-        MarsRover rover = new MarsRover(0, 0, MarsRover.Direction.N.name());
-        rover.move();
+        MarsRover rover = new MarsRover(0, 0, Direction.N.name());
+        rover.executeCommand("M");
         assertEquals(0, rover.getX());
         assertEquals(1, rover.getY());
     }
 
     @Test
     public void testMoveEast() {
-        MarsRover rover = new MarsRover(0, 0, MarsRover.Direction.E.name());
-        rover.move();
+        MarsRover rover = new MarsRover(0, 0, Direction.E.name());
+        rover.executeCommand("M");
         assertEquals(1, rover.getX());
         assertEquals(0, rover.getY());
     }
 
     @Test
     public void testMoveSouth() {
-        MarsRover rover = new MarsRover(0, 0, MarsRover.Direction.S.name());
-        rover.move();
+        MarsRover rover = new MarsRover(0, 0, Direction.S.name());
+        rover.executeCommand("M");
         assertEquals(0, rover.getX());
         assertEquals(-1, rover.getY());
     }
 
     @Test
     public void testMoveWest() {
-        MarsRover rover = new MarsRover(0, 0, MarsRover.Direction.W.name());
-        rover.move();
+        MarsRover rover = new MarsRover(0, 0, Direction.W.name());
+        rover.executeCommand("M");
         assertEquals(-1, rover.getX());
         assertEquals(0, rover.getY());
     }
+
+    @Test
+    public void testMoveWestBackward() {
+        MarsRover rover = new MarsRover(0, 0, Direction.W.name());
+        rover.executeCommand("B");
+        assertEquals(1, rover.getX());
+        assertEquals(0, rover.getY());
+    }
+
+    @Test
+    public void testMoveEastBackward() {
+        MarsRover rover = new MarsRover(0, 0, Direction.E.name());
+        rover.executeCommand("B");
+        assertEquals(-1, rover.getX());
+        assertEquals(0, rover.getY());
+    }
+
+    @Test
+    public void testMoveNorthBackward() {
+        MarsRover rover = new MarsRover(0, 0, Direction.N.name());
+        rover.executeCommand("B");
+        assertEquals(0, rover.getX());
+        assertEquals(-1, rover.getY());
+    }
+
+    @Test
+    public void testMoveSouthBackward() {
+        MarsRover rover = new MarsRover(0, 0, Direction.S.name());
+        rover.executeCommand("B");
+        assertEquals(0, rover.getX());
+        assertEquals(1, rover.getY());
+    }
+
+    @Test
+    public void testMoveMMLM() {
+        MarsRover rover = new MarsRover(0, 0, Direction.N.name());
+        rover.executeCommand("MMLM");
+        assertEquals("-1:2:W", rover.showStatus());
+    }
+
+
 
 }
