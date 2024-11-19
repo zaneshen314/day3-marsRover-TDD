@@ -2,6 +2,8 @@ package org.example;
 
 import org.example.operation.BaseOperation;
 
+import java.util.stream.IntStream;
+
 public class MarsRover {
 
     private int x;
@@ -25,11 +27,29 @@ public class MarsRover {
     }
 
     public String executeCommand(String command) {
-        BaseOperation operation = BaseOperation.getCommand(this.direction);
-        if (operation != null) {
-            command.chars()
-                    .forEach(c -> operation.execute(this, String.valueOf((char) c)));
-        }
+        int[] repeatCount = {1};
+        StringBuilder numberBuffer = new StringBuilder();
+        command.chars()
+                .forEach(c -> {
+                    char currentChar = (char) c;
+                    if (Character.isDigit(currentChar)) {
+                        numberBuffer.append(currentChar);
+                    } else {
+                        if (!numberBuffer.isEmpty()) {
+                            repeatCount[0] = Integer.parseInt(numberBuffer.toString());
+                            numberBuffer.setLength(0);
+                        }
+                        IntStream.range(0, repeatCount[0])
+                                .forEach(i -> {
+                                    BaseOperation operation = BaseOperation.getCommand(this.direction);
+                                    if (operation != null) {
+                                        operation.execute(this, String.valueOf(currentChar));
+                                    }
+                                });
+                        repeatCount[0] = 1;
+                    }
+                });
+
         return showStatus();
     }
 
