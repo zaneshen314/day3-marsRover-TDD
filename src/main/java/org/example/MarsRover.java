@@ -14,15 +14,13 @@ public class MarsRover {
     public MarsRover(){
         this.x = 0;
         this.y = 0;
-        this.direction = "N";
-        this.operation = BaseOperation.getCommand(this.direction);
+        setDirection("N");
     }
 
     public MarsRover(int x, int y, String direction){
         this.x = x;
         this.y = y;
-        this.direction = direction;
-        this.operation = BaseOperation.getCommand(this.direction);
+        setDirection(direction);
     }
 
     public String showStatus() {
