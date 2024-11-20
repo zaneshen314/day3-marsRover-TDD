@@ -71,7 +71,7 @@ public class MarsRoverTest {
     }
 
     @Test
-    public void testMoveNorth() {
+    public void should_forward_facing_north() {
         MarsRover rover = new MarsRover(0, 0, Direction.N.name());
         rover.executeCommand("M");
         assertEquals(0, rover.getX());
@@ -79,7 +79,7 @@ public class MarsRoverTest {
     }
 
     @Test
-    public void testMoveEast() {
+    public void should_forward_facing_east() {
         MarsRover rover = new MarsRover(0, 0, Direction.E.name());
         rover.executeCommand("M");
         assertEquals(1, rover.getX());
@@ -87,7 +87,7 @@ public class MarsRoverTest {
     }
 
     @Test
-    public void testMoveSouth() {
+    public void should_forward_facing_south() {
         MarsRover rover = new MarsRover(0, 0, Direction.S.name());
         rover.executeCommand("M");
         assertEquals(0, rover.getX());
@@ -95,7 +95,7 @@ public class MarsRoverTest {
     }
 
     @Test
-    public void testMoveWest() {
+    public void should_forward_facing_west() {
         MarsRover rover = new MarsRover(0, 0, Direction.W.name());
         rover.executeCommand("M");
         assertEquals(-1, rover.getX());
@@ -103,7 +103,7 @@ public class MarsRoverTest {
     }
 
     @Test
-    public void testMoveWestBackward() {
+    public void should_backward_facing_west() {
         MarsRover rover = new MarsRover(0, 0, Direction.W.name());
         rover.executeCommand("B");
         assertEquals(1, rover.getX());
@@ -111,7 +111,7 @@ public class MarsRoverTest {
     }
 
     @Test
-    public void testMoveEastBackward() {
+    public void should_backward_facing_east() {
         MarsRover rover = new MarsRover(0, 0, Direction.E.name());
         rover.executeCommand("B");
         assertEquals(-1, rover.getX());
@@ -119,7 +119,7 @@ public class MarsRoverTest {
     }
 
     @Test
-    public void testMoveNorthBackward() {
+    public void should_backward_facing_north() {
         MarsRover rover = new MarsRover(0, 0, Direction.N.name());
         rover.executeCommand("B");
         assertEquals(0, rover.getX());
@@ -127,7 +127,7 @@ public class MarsRoverTest {
     }
 
     @Test
-    public void testMoveSouthBackward() {
+    public void should_backward_facing_south() {
         MarsRover rover = new MarsRover(0, 0, Direction.S.name());
         rover.executeCommand("B");
         assertEquals(0, rover.getX());
@@ -135,28 +135,28 @@ public class MarsRoverTest {
     }
 
     @Test
-    public void testMoveMMLM() {
+    public void should_move_MMLM_facing_north() {
         MarsRover rover = new MarsRover(0, 0, Direction.N.name());
         rover.executeCommand("MMLM");
         assertEquals("-1:2:W", rover.showStatus());
     }
 
     @Test
-    public void testMove2M() {
+    public void should_move_2M_facing_north() {
         MarsRover rover = new MarsRover(0, 0, Direction.N.name());
         rover.executeCommand("2M");
         assertEquals("0:2:N", rover.showStatus());
     }
 
     @Test
-    public void testMove2R() {
+    public void should_move_2R_facing_north() {
         MarsRover rover = new MarsRover(0, 0, Direction.N.name());
         rover.executeCommand("2R");
         assertEquals("0:0:S", rover.showStatus());
     }
 
     @Test
-    public void testMove2R21M1L1M() {
+    public void should_move_2R21M1L1M_facing_north() {
         MarsRover rover = new MarsRover(0, 0, Direction.N.name());
         rover.executeCommand("2R21M1L1M");
         assertEquals("1:-21:E", rover.showStatus());
