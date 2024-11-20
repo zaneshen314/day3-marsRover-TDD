@@ -24,12 +24,12 @@ public class WestOperation extends BaseOperation {
     @Override
     public void forward(MarsRover marsRover) {
         Position position = marsRover.getPosition();
-        marsRover.setPosition(new Position(position.getX() - 1, position.getY()));
+        marsRover.updatePosition(position.getX() - 1, position.getY());
     }
 
     @Override
     public void backward(MarsRover marsRover) {
         Position position = marsRover.getPosition();
-        marsRover.setPosition(new Position(position.getX() + 1, position.getY()));
+        marsRover.updatePosition(position.getX() + 1, position.getY());
     }
 }

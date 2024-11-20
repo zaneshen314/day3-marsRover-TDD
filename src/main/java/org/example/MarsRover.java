@@ -57,6 +57,9 @@ public class MarsRover {
     public void setPosition(Position position) {
         this.position = position;
     }
+    public void updatePosition(int x, int y) {
+        setPosition(new Position(x,y));
+    }
 
 
     public BaseOperation getOperation() {
