@@ -1,15 +1,16 @@
 package org.example.operation;
 
 import org.example.MarsRover;
+import org.example.constant.Direction;
 
 public abstract class BaseOperation {
 
-    public static BaseOperation getOperation(String direction) {
+    public static BaseOperation getOperation(Direction direction) {
         return switch (direction) {
-            case "N" -> new NorthOperation();
-            case "S" -> new SouthOperation();
-            case "E" -> new EastOperation();
-            case "W" -> new WestOperation();
+            case N -> new NorthOperation();
+            case S -> new SouthOperation();
+            case E -> new EastOperation();
+            case W -> new WestOperation();
             default -> null;
         };
     }
@@ -23,6 +24,8 @@ public abstract class BaseOperation {
 
         }
     };
+
+    public abstract Direction getDirection();
 
     public abstract void turnLeft(MarsRover marsRover);
 

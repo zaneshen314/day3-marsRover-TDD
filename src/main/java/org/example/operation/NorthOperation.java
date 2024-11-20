@@ -1,27 +1,35 @@
 package org.example.operation;
 
 import org.example.MarsRover;
+import org.example.Position;
 import org.example.constant.Direction;
 
 public class NorthOperation extends BaseOperation {
 
     @Override
+    public Direction getDirection() {
+        return Direction.N;
+    }
+
+    @Override
     public void turnLeft(MarsRover marsRover) {
-        marsRover.setDirection(Direction.W.name());
+        marsRover.setOperation(new WestOperation());
     }
 
     @Override
     public void turnRight(MarsRover marsRover) {
-        marsRover.setDirection(Direction.E.name());
+        marsRover.setOperation(new EastOperation());
     }
 
     @Override
     public void forward(MarsRover marsRover) {
-        marsRover.setY(marsRover.getY() + 1);
+        Position position = marsRover.getPosition();
+        marsRover.setPosition(new Position(position.getX(), position.getY() + 1));
     }
 
     @Override
     public void backward(MarsRover marsRover) {
-        marsRover.setY(marsRover.getY() - 1);
+        Position position = marsRover.getPosition();
+        marsRover.setPosition(new Position(position.getX(), position.getY() - 1));
     }
 }

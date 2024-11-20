@@ -1,30 +1,28 @@
 package org.example;
 
+import org.example.constant.Direction;
 import org.example.operation.BaseOperation;
+import org.example.operation.NorthOperation;
 
 import java.util.stream.IntStream;
 
 public class MarsRover {
 
-    private int x;
-    private int y;
-    private String direction;
+    private Position position;
     private BaseOperation operation;
 
     public MarsRover(){
-        this.x = 0;
-        this.y = 0;
-        setDirection("N");
+        this.position = new Position();
+        setOperation(new NorthOperation());
     }
 
-    public MarsRover(int x, int y, String direction){
-        this.x = x;
-        this.y = y;
-        setDirection(direction);
+    public MarsRover(int x, int y, Direction direction){
+        this.position = new Position(x, y);
+        setOperation(BaseOperation.getOperation(direction));
     }
 
     public String showStatus() {
-        return String.format("%d:%d:%s", x, y, direction);
+        return String.format("%d:%d:%s", position.getX(), position.getY(), operation.getDirection().name());
     }
 
     public String executeCommand(String command) {
@@ -52,30 +50,14 @@ public class MarsRover {
         }
     }
 
-    public int getX() {
-        return x;
+    public Position getPosition() {
+        return position;
     }
 
-    public void setX(int x) {
-        this.x = x;
+    public void setPosition(Position position) {
+        this.position = position;
     }
 
-    public int getY() {
-        return y;
-    }
-
-    public void setY(int y) {
-        this.y = y;
-    }
-
-    public String getDirection() {
-        return direction;
-    }
-
-    public void setDirection(String direction) {
-        this.direction = direction;
-        this.operation = BaseOperation.getOperation(this.direction);
-    }
 
     public BaseOperation getOperation() {
         return operation;
